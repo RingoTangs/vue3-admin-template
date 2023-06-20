@@ -17,5 +17,7 @@
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint", "vue"],
-  "rules": {}
+  "rules": {
+    "i18n-ally-key-missing": "off"
+  }
 }

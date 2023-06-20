@@ -4,16 +4,19 @@
             <el-form :model="loginForm">
                 <!-- username -->
                 <el-form-item>
-                    <el-input v-model="loginForm.usename" placeholder="用户名"></el-input>
+                    <el-input v-model="loginForm.usename" :placeholder="t('loginPage.username')" />
                 </el-form-item>
 
                 <!-- password -->
                 <el-form-item>
-                    <el-input v-model="loginForm.password" placeholder="密码"></el-input>
+                    <el-input v-model="loginForm.password" :placeholder="t('loginPage.password')" />
                 </el-form-item>
 
+                <!-- Login -->
                 <el-form-item>
-                    <el-button type="primary" class="w-full">登录</el-button>
+                    <el-button type="primary" class="w-full">
+                        {{ t('loginPage.loginButton') }}
+                    </el-button>
                 </el-form-item>
             </el-form>
         </div>
@@ -22,7 +25,9 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const loginForm = ref({ usename: '', password: '' })
 </script>
 
