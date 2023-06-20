@@ -4,7 +4,7 @@
   "editor.fontWeight": "bold",
   "files.autoSave": "afterDelay",
   "editor.formatOnSave": false,
-  "editor.fontFamily": "Consolas, 'Courier New', monospace",
+  "editor.fontFamily": "Consolas,KaiTi, 'Courier New', monospace",
   "editor.suggest.snippetsPreventQuickSuggestions": false,
   "editor.acceptSuggestionOnCommitCharacter": false,
   "[json]": {
