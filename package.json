@@ -27,6 +27,7 @@
     "eslint-plugin-vue": "^9.15.0",
     "postcss": "^8.4.24",
     "prettier": "2.8.8",
+    "sass": "^1.63.4",
     "tailwindcss": "^3.3.2",
     "typescript": "^5.0.4",
     "unplugin-auto-import": "^0.16.4",
