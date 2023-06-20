@@ -23,12 +23,17 @@
                 </el-form-item>
             </el-form>
         </div>
+
+        <div class="absolute right-14 top-14">
+            <LangSwitch></LangSwitch>
+        </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import LangSwitch from '@/components/lang-switch/LangSwitch.vue'
 
 const { t } = useI18n()
 const loginForm = ref({ usename: '', password: '' })

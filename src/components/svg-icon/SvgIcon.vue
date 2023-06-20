@@ -1,6 +1,6 @@
 <template>
     <svg aria-hidden="true">
-        <use :href="symbolId" :fill="color" />
+        <use :href="symbolId" :fill="color" :stroke="color" />
     </svg>
 </template>
 
@@ -13,7 +13,7 @@ interface Props {
 }
 const props = withDefaults(defineProps<Props>(), {
     prefix: 'icon',
-    color: '#333',
+    color: '#fff',
 })
 const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 </script>
