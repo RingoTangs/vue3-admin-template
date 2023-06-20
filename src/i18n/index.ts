@@ -4,8 +4,8 @@ import en from './en-us'
 
 export default createI18n({
     legacy: false,
-    locale: 'en',
-    fallbackLocale: 'zh',
+    locale: 'zh',
+    fallbackLocale: 'en',
     messages: {
         zh,
         en,
