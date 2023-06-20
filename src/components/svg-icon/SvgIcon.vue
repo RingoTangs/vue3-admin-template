@@ -17,5 +17,3 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 </script>
-
-<style lang="scss" scoped></style>
