@@ -55,7 +55,7 @@ const loginForm = ref({ usename: '', password: '' })
     @apply mb-7;
     .el-input,
     .el-button {
-        @apply h-11 text-lg;
+        @apply h-11 text-lg font-bold;
     }
     :deep(.el-input) {
         .el-input__wrapper {
