@@ -3,7 +3,7 @@
   "window.zoomLevel": 2.5,
   "editor.fontWeight": "bold",
   "files.autoSave": "afterDelay",
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "editor.fontFamily": "Consolas, 'Courier New', monospace",
   "editor.suggest.snippetsPreventQuickSuggestions": false,
   "editor.acceptSuggestionOnCommitCharacter": false,
