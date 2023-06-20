@@ -1,6 +1,9 @@
 <template>
     <div id="views_login" class="flex items-center justify-center w-full min-h-full">
         <div class="el-form_wrapper w-[520px] px-11 py-16 rounded-xl">
+            <h1 class="text-3xl font-bold text-center text-[#3e3e3e] mb-10">
+                {{ t('loginPage.formTitle') }}
+            </h1>
             <el-form :model="loginForm">
                 <!-- username -->
                 <el-form-item>
