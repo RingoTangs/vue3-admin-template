@@ -34,12 +34,7 @@ const switchLanguage = (lang: Language) => {
     storage.setLocale(lang)
 }
 
-defineProps({
-    iconColor: {
-        type: String,
-        default: '#000',
-    },
-})
+withDefaults(defineProps<{ iconColor?: string }>(), { iconColor: '#000' })
 </script>
 
 <style scoped lang="scss">

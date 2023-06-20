@@ -25,7 +25,7 @@
         </div>
 
         <div class="absolute right-14 top-14">
-            <LangSwitch></LangSwitch>
+            <LangSwitch />
         </div>
     </div>
 </template>
