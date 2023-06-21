@@ -1,8 +1,8 @@
 import i18n from '@/i18n'
-import { computed } from 'vue'
+import { computed, Ref } from 'vue'
 
 // i18n 在 ts 代码中写在计算属性下防止失效！
-const rules = computed(() => ({
+export const rules = computed(() => ({
     username: [
         {
             required: true,
@@ -19,4 +19,11 @@ const rules = computed(() => ({
     ],
 }))
 
-export default rules
+export interface LoginForm {
+    username: string
+    password: string
+}
+
+export type Loading = Ref<boolean>
+
+export type LoginEvent = (valid: boolean, loginForm: LoginForm, loading: Loading) => void

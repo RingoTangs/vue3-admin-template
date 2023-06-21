@@ -10,8 +10,7 @@
         </template>
         <template #suffix>
             <span @click="showPwdClick">
-                <SvgIcon v-if="!isShowPwd" name="eye" class="w-5 h-5 text-gray-600" />
-                <SvgIcon v-else name="eye-open" class="w-5 h-5 text-gray-600" />
+                <SvgIcon :name="isShowPwd ? 'eye-open' : 'eye'" class="w-5 h-5 text-gray-600" />
             </span>
         </template>
     </el-input>

@@ -7,7 +7,7 @@
             </h1>
 
             <!-- 表单内容 -->
-            <LoginForm />
+            <LoginForm @login="onLogin" />
         </div>
 
         <!-- 语言切换 -->
@@ -21,8 +21,16 @@
 import { useI18n } from 'vue-i18n'
 import LangSwitch from '@/components/lang-switch/LangSwitch.vue'
 import LoginForm from './login-form/LoginForm.vue'
+import { type LoginEvent } from './login-form'
 
 const { t } = useI18n()
+
+const onLogin: LoginEvent = (valid, loginForm, loading) => {
+    if (!valid) return
+    loading.value = true
+    console.log(loginForm)
+    setTimeout(() => (loading.value = false), 2000)
+}
 </script>
 
 <style lang="scss" scoped>
