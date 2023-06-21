@@ -4,5 +4,13 @@ export default {
         username: 'username',
         password: 'password',
         loginButton: 'Login',
+        rules: {
+            username: {
+                required: 'Please Input Username',
+            },
+            password: {
+                required: 'Please Input Password',
+            },
+        },
     },
 }

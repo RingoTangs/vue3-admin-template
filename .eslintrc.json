@@ -18,6 +18,7 @@
   },
   "plugins": ["@typescript-eslint", "vue"],
   "rules": {
-    "i18n-ally-key-missing": "off"
+    "i18n-ally-key-missing": "off",
+    "vue/multi-word-component-names": "off"
   }
 }

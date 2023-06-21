@@ -24,3 +24,8 @@ const i18n = createI18n({
 })
 
 export default i18n
+
+export function switchLocale(locale: Language) {
+    i18n.global.locale.value = locale
+    storage.setLocale(locale)
+}

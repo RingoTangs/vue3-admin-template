@@ -14,8 +14,8 @@
                 class="absolute p-5 mt-1 text-sm rounded-md select-list bg-gray-50 right-2"
                 ref="selectList"
             >
-                <div class="mb-3 min-w-max" @click="() => switchLanguage('zh')">简体中文</div>
-                <div class="min-w-max" @click="() => switchLanguage('en')">English</div>
+                <div class="mb-3 min-w-max" @click="() => switchLocale('zh')">简体中文</div>
+                <div class="min-w-max" @click="() => switchLocale('en')">English</div>
             </div>
         </Transition>
     </div>
@@ -24,15 +24,9 @@
 <script setup lang="ts">
 import SvgIcon from '@/components/svg-icon/SvgIcon.vue'
 import { ref } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { type Language, storage } from '@/i18n'
+import { switchLocale } from '@/i18n'
 
-const { locale } = useI18n()
 const selectListShow = ref(false)
-const switchLanguage = (lang: Language) => {
-    locale.value = lang
-    storage.setLocale(lang)
-}
 
 withDefaults(defineProps<{ iconColor?: string }>(), { iconColor: '#000' })
 </script>
