@@ -7,6 +7,7 @@ const constantRoutes: Readonly<RouteRecordRaw[]> = [
         component: () => import('@/views/login/Login.vue'),
         meta: {
             hidden: true,
+            title: 'Login',
         },
     },
 ]
