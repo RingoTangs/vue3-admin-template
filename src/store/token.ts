@@ -17,8 +17,11 @@ export const useTokenStore = defineStore('token-store', {
             localStorage.setItem(TOKEN_KEY, token)
         },
         removeToken() {
-            this.token = ''
-            localStorage.removeItem(TOKEN_KEY)
+            return new Promise<void>((resolve) => {
+                this.token = ''
+                localStorage.removeItem(TOKEN_KEY)
+                resolve()
+            })
         },
     },
 })

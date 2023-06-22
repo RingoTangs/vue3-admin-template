@@ -10,9 +10,8 @@ const Message = useMessage()
 // request interceptor
 service.interceptors.request.use(
     (config) => {
-        const token = tokenStore.token
-        if (token) {
-            config.headers['X-Token'] = token
+        if (tokenStore.hasToken) {
+            config.headers['X-Token'] = tokenStore.token
         }
         return config
     },
@@ -26,11 +25,21 @@ service.interceptors.request.use(
 service.interceptors.response.use(
     (response) => {
         const res = response.data
-        if (res.code !== 200) {
+
+        if (res.code !== CodeEnum.SUCCESS) {
             Message({ type: 'error', message: res.message || 'Error', duration: 5000 })
+            if (
+                res.code === CodeEnum.ILLEGAL_TOKEN ||
+                res.code === CodeEnum.OTHER_CLIENT_LOGIN ||
+                res.code === CodeEnum.TOKEN_EXPIRED
+            ) {
+                tokenStore.removeToken().then(() => location.reload())
+            }
+
             return Promise.reject(res.message || 'error')
+        } else {
+            return res
         }
-        return res
     },
     (error) => {
         console.log(error) // for debug
@@ -41,4 +50,10 @@ service.interceptors.response.use(
 
 export default service
 
-export type CommonResponse = { code: number; message: string; data: unknown }
+export enum CodeEnum {
+    SUCCESS = 200, // 成功
+    FAIL = 500, // 失败
+    ILLEGAL_TOKEN = 508, // 非法的 token
+    OTHER_CLIENT_LOGIN = 512, // 其他客户端已经登录
+    TOKEN_EXPIRED = 514, // token 过期
+}
