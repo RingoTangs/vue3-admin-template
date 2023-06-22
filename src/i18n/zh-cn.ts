@@ -1,6 +1,7 @@
 export default {
     loginPage: {
-        formTitle: 'VUE3-ADMIN-TEMPLATE',
+        title: '请登录',
+        formTitle: '请登录',
         username: '用户名',
         password: '密码',
         loginButton: '登录',
