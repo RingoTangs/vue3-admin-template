@@ -27,14 +27,14 @@ service.interceptors.response.use(
     (response) => {
         const res = response.data
         if (res.code !== 200) {
-            Message({ type: 'error', message: res.message || 'error' })
+            Message({ type: 'error', message: res.message || 'Error', duration: 5000 })
             return Promise.reject(res.message || 'error')
         }
         return res
     },
     (error) => {
         console.log(error) // for debug
-        Message({ type: 'error', message: error })
+        Message({ type: 'error', message: error.message, duration: 5000 })
         return Promise.reject(error)
     }
 )
