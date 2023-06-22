@@ -6,4 +6,4 @@ export const mode: string = import.meta.env.MODE
 export const apiBaseUrl: string = import.meta.env.VITE_APP_API_BASE_URL
 
 // 项目名字
-export const documentTitle: string = import.meta.env.VITE_APP_PROJECT_TITLE
+export const projectTitle: string = import.meta.env.VITE_APP_PROJECT_TITLE
