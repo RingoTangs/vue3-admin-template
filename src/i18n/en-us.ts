@@ -1,6 +1,6 @@
 export default {
     loginPage: {
-        formTitle: 'vue3-admin-template',
+        formTitle: 'VUE3-ADMIN-TEMPLATE',
         username: 'username',
         password: 'password',
         loginButton: 'Login',
