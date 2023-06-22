@@ -6,6 +6,11 @@ export const useTokenStore = defineStore('token-store', {
     state: () => ({
         token: localStorage.getItem(TOKEN_KEY) || '',
     }),
+    getters: {
+        hasToken: (state) => {
+            return Boolean(state.token)
+        },
+    },
     actions: {
         setToken(token: string) {
             this.token = token
