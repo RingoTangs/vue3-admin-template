@@ -1,9 +1,9 @@
 import axios from 'axios'
-import config from '@/config'
+import { apiBaseUrl } from '@/config'
 import { default as pinia, useTokenStore } from '@/store'
 import { useMessage } from '@/utils/message'
 
-const service = axios.create({ baseURL: config.apiBaseUrl, timeout: 5000 })
+const service = axios.create({ baseURL: apiBaseUrl, timeout: 5000 })
 const tokenStore = useTokenStore(pinia)
 const Message = useMessage()
 
