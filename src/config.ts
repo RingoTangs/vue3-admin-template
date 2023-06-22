@@ -7,3 +7,8 @@ export const apiBaseUrl: string = import.meta.env.VITE_APP_API_BASE_URL
 
 // 项目名字
 export const projectTitle: string = import.meta.env.VITE_APP_PROJECT_TITLE
+
+// 计算页面的标题
+export function getFullPageTitle(pageTitle: string) {
+    return `${pageTitle} - ${projectTitle}`
+}

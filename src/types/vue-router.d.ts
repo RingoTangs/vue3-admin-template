@@ -1,7 +1,8 @@
 import 'vue-router'
+import {} from 'vue'
 
 declare module 'vue-router' {
     interface RouteMeta {
-        title: string
+        title: ComputedRef<string>
     }
 }

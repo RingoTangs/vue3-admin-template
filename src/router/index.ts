@@ -1,5 +1,7 @@
+import { computed } from 'vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
+import i18n from '@/i18n'
 
 const constantRoutes: Readonly<RouteRecordRaw[]> = [
     {
@@ -7,7 +9,7 @@ const constantRoutes: Readonly<RouteRecordRaw[]> = [
         component: () => import('@/views/login/Login.vue'),
         meta: {
             hidden: true,
-            title: 'Login',
+            title: computed(() => i18n.global.t('loginPage.title')),
         },
     },
 ]
