@@ -27,5 +27,8 @@ export const useUserStore = defineStore('userStore', {
             this.$reset()
             useTokenStore().removeToken()
         },
+        removeUserInfo() {
+            this.$reset()
+        },
     },
 })
