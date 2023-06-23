@@ -60,7 +60,7 @@ export enum CodeEnum {
 
 export type Result<T = unknown> = { code: number; message: string; data: T }
 
-export const request = <T = unknown, D = unknown>(config: AxiosRequestConfig<D>) => {
+const request = <T = unknown, D = unknown>(config: AxiosRequestConfig<D>) => {
     return new Promise<Result<T>>((resolve) => {
         axiosInstance<Result<T>>(config)
             .then((response) => resolve(response.data))
