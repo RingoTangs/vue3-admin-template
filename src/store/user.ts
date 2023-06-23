@@ -14,8 +14,7 @@ export const useUserStore = defineStore('userStore', {
     actions: {
         async login(loginRequest: userApi.LoginRequest) {
             const resp = await userApi.login(loginRequest)
-            const token = resp.data
-            useTokenStore().setToken(token)
+            useTokenStore().setToken(resp.data.token)
         },
         async getUserInfo(token: string) {
             const resp = await userApi.getUserInfo(token)
