@@ -60,6 +60,11 @@ export enum CodeEnum {
 
 export type Result<T = unknown> = { code: number; message: string; data: T }
 
+/**
+ * 封装 axios 请求
+ * <T>: 表示响应体内容。
+ * <D>: 表示请求体内容。
+ */
 const request = <T = unknown, D = unknown>(config: AxiosRequestConfig<D>) => {
     return new Promise<Result<T>>((resolve) => {
         axiosInstance<Result<T>>(config)
