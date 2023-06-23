@@ -12,6 +12,10 @@ const constantRoutes: Readonly<RouteRecordRaw[]> = [
             title: computed(() => i18n.global.t('loginPage.title')),
         },
     },
+    {
+        path: '/',
+        component: () => import('@/layout/Layout.vue'),
+    },
 ]
 
 export default createRouter({
