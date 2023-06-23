@@ -1,18 +1,18 @@
 import axios from 'axios'
 import { type AxiosRequestConfig } from 'axios'
 import { apiBaseUrl } from '@/config'
-import { default as pinia, useTokenStore } from '@/store'
+import { useTokenStore } from '@/store'
 import { useMessage } from '@/utils/message'
 
 // 创建 axios 实例
 const axiosInstance = axios.create({ baseURL: apiBaseUrl, timeout: 5000 })
 
-const tokenStore = useTokenStore(pinia)
 const Message = useMessage()
 
 // request interceptor
 axiosInstance.interceptors.request.use(
     (config) => {
+        const tokenStore = useTokenStore()
         if (tokenStore.hasToken) {
             config.headers['X-Token'] = tokenStore.token
         }
@@ -34,7 +34,8 @@ axiosInstance.interceptors.response.use(
                 res.code === CodeEnum.OTHER_CLIENT_LOGIN ||
                 res.code === CodeEnum.TOKEN_EXPIRED
             ) {
-                tokenStore.removeToken().then(() => location.reload())
+                useTokenStore().removeToken()
+                location.reload()
             }
             return Promise.reject(res.message || 'Unknown Error')
         } else {
@@ -60,7 +61,7 @@ export type Result<T = unknown> = { code: number; message: string; data: T }
  * <D>: 表示请求体内容。
  */
 const request = <T = unknown, D = unknown>(config: AxiosRequestConfig<D>) => {
-    return new Promise<Result<T>>((resolve) => {
+    return new Promise<Result<T>>((resolve, reject) => {
         axiosInstance<Result<T>>(config)
             .then((response) => resolve(response.data))
 
@@ -72,6 +73,7 @@ const request = <T = unknown, D = unknown>(config: AxiosRequestConfig<D>) => {
                     message: typeof err === 'string' ? err : err.message,
                     duration: 5000,
                 })
+                reject(err)
             })
     })
 }
