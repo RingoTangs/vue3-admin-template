@@ -2,17 +2,54 @@ import router from '@/router'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { getFullPageTitle } from '@/config'
-import { default as pinia, useTokenStore } from '@/store'
+import { useTokenStore, useUserStore } from '@/store'
 
 const whiteList = ['/login'] // no redirect whitelist
-const tokenStore = useTokenStore(pinia)
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _, next) => {
+    const tokenStore = useTokenStore()
+    const userStore = useUserStore()
+
     // start progress bar
     NProgress.start()
-    document.title = getFullPageTitle(to.meta.title.value)
 
-    next()
+    // determine whether the user has logged in
+    const hasToken = tokenStore.hasToken
+    if (hasToken) {
+        if (to.path === '/login') {
+            next({ path: '/' })
+            NProgress.done()
+        } else {
+            const hasUserInfo = userStore.hasUserInfo
+            if (hasUserInfo) {
+                next()
+            } else {
+                userStore
+                    .getUserInfo(tokenStore.token)
+                    .then(() => next())
+                    .catch(() => {
+                        userStore.$reset()
+                        tokenStore.removeToken()
+                        next(`/login?redirect=${to.path}`)
+                        NProgress.done()
+                    })
+            }
+        }
+    } else {
+        /* has no token*/
+        if (whiteList.indexOf(to.path) !== -1) {
+            // in the free login whitelist, go directly
+            next()
+        } else {
+            // other pages that do not have permission to access are redirected to the login page.
+            next(`/login?redirect=${to.path}`)
+            NProgress.done()
+        }
+    }
 })
 
-router.afterEach(() => NProgress.done())
+router.afterEach((to) => {
+    // set page title
+    document.title = getFullPageTitle(to.meta.title.value)
+    NProgress.done()
+})
