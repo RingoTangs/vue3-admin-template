@@ -8,6 +8,9 @@ export const useUserStore = defineStore('userStore', {
     state: () => ({
         userInfo: {} as UserInfo,
     }),
+    getters: {
+        hasUserInfo: (state) => Boolean(state.userInfo.name),
+    },
     actions: {
         async login(loginRequest: userApi.LoginRequest) {
             const resp = await userApi.login(loginRequest)
