@@ -2,8 +2,9 @@ import request from '@/utils/request'
 
 // User Login API
 export type LoginRequest = { username: string; password: string }
+export type LoginResponse = { token: string }
 export function login(data: LoginRequest) {
-    return request<string, LoginRequest>({ url: '/user/login', method: 'post', data })
+    return request<LoginResponse, LoginRequest>({ url: '/user/login', method: 'post', data })
 }
 
 // Get User Info API
