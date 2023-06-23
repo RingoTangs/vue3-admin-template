@@ -50,6 +50,8 @@ router.beforeEach(async (to, _, next) => {
 
 router.afterEach((to) => {
     // set page title
-    document.title = getFullPageTitle(to.meta.title.value)
     NProgress.done()
+    if (to.meta.title) {
+        document.title = getFullPageTitle(to.meta.title.value)
+    }
 })
