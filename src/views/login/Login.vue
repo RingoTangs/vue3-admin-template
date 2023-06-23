@@ -1,7 +1,7 @@
 <template>
     <div id="views_login" class="flex items-center justify-center w-full min-h-full">
         <div
-            class="form_wrapper w-[350px] px-3 py-8 rounded-xl sm:w-[520px] sm:px-11 sm:py-16 mx-5"
+            class="form_wrapper w-[350px] px-3 py-8 rounded-xl sm:w-[520px] sm:px-11 sm:py-16 sm:mx-5"
         >
             <!-- 表单标题 -->
             <h1 class="text-3xl font-bold text-center text-[#3e3e3e] mb-10">
