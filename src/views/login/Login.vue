@@ -22,14 +22,21 @@ import { useI18n } from 'vue-i18n'
 import LangSwitch from '@/components/lang-switch/LangSwitch.vue'
 import LoginForm from './login-form/LoginForm.vue'
 import { type LoginEvent } from './login-form'
+import { useUserStore } from '@/store'
+import { useRouter, useRoute } from 'vue-router'
 
 const { t } = useI18n()
+const route = useRoute()
+const router = useRouter()
+const userStore = useUserStore()
 
 const onLogin: LoginEvent = (valid, loginForm, loading) => {
     if (!valid) return
     loading.value = true
-    console.log(loginForm)
-    setTimeout(() => (loading.value = false), 2000)
+    userStore
+        .login(loginForm)
+        .then(() => router.push({ path: (route.query['redirect'] as string) || '/' }))
+        .finally(() => (loading.value = false))
 }
 </script>
 
