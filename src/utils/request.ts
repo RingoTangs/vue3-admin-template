@@ -28,9 +28,7 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
     (response) => {
         const res = response.data
-
         if (res.code !== CodeEnum.SUCCESS) {
-            Message({ type: 'error', message: res.message || 'Error', duration: 5000 })
             if (
                 res.code === CodeEnum.ILLEGAL_TOKEN ||
                 res.code === CodeEnum.OTHER_CLIENT_LOGIN ||
@@ -38,16 +36,12 @@ axiosInstance.interceptors.response.use(
             ) {
                 tokenStore.removeToken().then(() => location.reload())
             }
-
-            return Promise.reject(res.message || 'error')
+            return Promise.reject(res.message || 'Unknown Error')
         } else {
             return response
         }
     },
-    (error) => {
-        Message({ type: 'error', message: error.message, duration: 5000 })
-        return Promise.reject(error)
-    }
+    (error) => Promise.reject(error)
 )
 
 export enum CodeEnum {
@@ -69,7 +63,16 @@ const request = <T = unknown, D = unknown>(config: AxiosRequestConfig<D>) => {
     return new Promise<Result<T>>((resolve) => {
         axiosInstance<Result<T>>(config)
             .then((response) => resolve(response.data))
-            .catch((err) => console.error(err)) // 统一处理错误
+
+            // 统一处理错误
+            .catch((err) => {
+                console.error(err)
+                Message({
+                    type: 'error',
+                    message: typeof err === 'string' ? err : err.message,
+                    duration: 5000,
+                })
+            })
     })
 }
 
