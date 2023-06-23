@@ -1,14 +1,17 @@
 import axios from 'axios'
+import { type AxiosRequestConfig } from 'axios'
 import { apiBaseUrl } from '@/config'
 import { default as pinia, useTokenStore } from '@/store'
 import { useMessage } from '@/utils/message'
 
-const service = axios.create({ baseURL: apiBaseUrl, timeout: 5000 })
+// 创建 axios 实例
+const axiosInstance = axios.create({ baseURL: apiBaseUrl, timeout: 5000 })
+
 const tokenStore = useTokenStore(pinia)
 const Message = useMessage()
 
 // request interceptor
-service.interceptors.request.use(
+axiosInstance.interceptors.request.use(
     (config) => {
         if (tokenStore.hasToken) {
             config.headers['X-Token'] = tokenStore.token
@@ -22,7 +25,7 @@ service.interceptors.request.use(
 )
 
 // response interceptor
-service.interceptors.response.use(
+axiosInstance.interceptors.response.use(
     (response) => {
         const res = response.data
 
@@ -38,17 +41,14 @@ service.interceptors.response.use(
 
             return Promise.reject(res.message || 'error')
         } else {
-            return res
+            return response
         }
     },
     (error) => {
-        console.log(error) // for debug
         Message({ type: 'error', message: error.message, duration: 5000 })
         return Promise.reject(error)
     }
 )
-
-export default service
 
 export enum CodeEnum {
     SUCCESS = 200, // 成功
@@ -57,3 +57,15 @@ export enum CodeEnum {
     OTHER_CLIENT_LOGIN = 512, // 其他客户端已经登录
     TOKEN_EXPIRED = 514, // token 过期
 }
+
+export type Result<T = unknown> = { code: number; message: string; data: T }
+
+export const request = <T = unknown, D = unknown>(config: AxiosRequestConfig<D>) => {
+    return new Promise<Result<T>>((resolve) => {
+        axiosInstance<Result<T>>(config)
+            .then((response) => resolve(response.data))
+            .catch((err) => console.error(err)) // 统一处理错误
+    })
+}
+
+export default request
