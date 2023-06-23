@@ -6,7 +6,7 @@ import { useTokenStore, useUserStore } from '@/store'
 
 const whiteList = ['/login'] // no redirect whitelist
 
-router.beforeEach((to, _, next) => {
+router.beforeEach(async (to, _, next) => {
     const tokenStore = useTokenStore()
     const userStore = useUserStore()
 
@@ -24,15 +24,15 @@ router.beforeEach((to, _, next) => {
             if (hasUserInfo) {
                 next()
             } else {
-                userStore
-                    .getUserInfo(tokenStore.token)
-                    .then(() => next())
-                    .catch(() => {
-                        userStore.$reset()
-                        tokenStore.removeToken()
-                        next(`/login?redirect=${to.path}`)
-                        NProgress.done()
-                    })
+                try {
+                    await userStore.getUserInfo(tokenStore.token)
+                    next()
+                } catch (err) {
+                    userStore.removeUserInfo()
+                    tokenStore.removeToken()
+                    next(`/login?redirect=${to.path}`)
+                    NProgress.done()
+                }
             }
         }
     } else {
