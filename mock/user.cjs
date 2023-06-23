@@ -39,7 +39,7 @@ module.exports = function (app) {
         const { token } = req.query
         const info = users[token]
         if (!info) {
-            resp.json({ code: 500, message: 'Login failed, unable to get user details.' })
+            resp.json({ code: 508, message: 'Login failed, unable to get user details.' })
             return
         }
         resp.json({ code: 200, message: 'Get User Info Success.', data: info })
