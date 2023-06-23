@@ -4,8 +4,11 @@ const bodyParser = require('body-parser')
 const user = require('./user.cjs')
 
 const app = express()
+const cors = require('cors')
+app.use(cors())
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
 
 user(app)
 
