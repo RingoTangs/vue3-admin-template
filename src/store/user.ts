@@ -2,20 +2,27 @@ import { defineStore } from 'pinia'
 import { userApi } from '@/api'
 import { useTokenStore } from './token'
 
+type UserInfo = userApi.GetUserInfoResponse
+
 export const useUserStore = defineStore('userStore', {
-    state: () => ({ name: '', avatar: '' }),
+    state: () => ({
+        userInfo: {} as UserInfo,
+    }),
     actions: {
         async login(loginRequest: userApi.LoginRequest) {
             const resp = await userApi.login(loginRequest)
             const token = resp.data
-            const tokenStore = useTokenStore()
-            tokenStore.setToken(token)
+            useTokenStore().setToken(token)
         },
         async getUserInfo(token: string) {
             const resp = await userApi.getUserInfo(token)
             const userInfo = resp.data
-            this.name = userInfo.name
-            this.avatar = userInfo.avatar
+            this.userInfo = userInfo
+        },
+        async logout() {
+            await userApi.logout()
+            this.$reset()
+            useTokenStore().removeToken()
         },
     },
 })
