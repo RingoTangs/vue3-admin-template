@@ -6,8 +6,7 @@
             </el-scrollbar>
         </el-aside>
         <el-main class="bg-slate-500">
-            main
-            {{ $router }}
+            <AppMain></AppMain>
         </el-main>
     </el-container>
 </template>
@@ -15,14 +14,16 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Sidebar from './sidebar/Sidebar.vue'
-import { useRouter } from 'vue-router';
-const router = useRouter()
-console.log(router.getRoutes());
+import AppMain from './AppMain.vue'
+
 const asideWith = ref('300px')
 </script>
 
 <style lang="scss" scoped>
 .sidebar_wrapper {
     @apply transition-all duration-300;
+}
+:deep(.el-main) {
+    @apply p-0;
 }
 </style>

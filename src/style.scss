@@ -16,3 +16,28 @@ body,
     background-image: url('./assets/login_background.png');
     @apply bg-no-repeat bg-cover;
 }
+
+/************************************ Transition ******************************************/
+// Router Transition
+.views_transform-enter-active {
+    @apply transition-all duration-300;
+}
+.views_transform-leave-active {
+    @apply transition-all duration-700;
+}
+
+.views_transform-leave-from,
+.views_transform-enter-to {
+    opacity: 1;
+    transform: translateX(0px);
+}
+
+.views_transform-enter-from {
+    opacity: 0;
+    transform: translateX(-100px);
+}
+
+.views_transform-leave-to {
+    opacity: 0;
+    transform: translateX(100px);
+}
