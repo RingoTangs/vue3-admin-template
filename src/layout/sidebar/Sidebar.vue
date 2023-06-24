@@ -1,18 +1,14 @@
 <template>
-    <el-scrollbar :wrap-style="scrollbarStyle" :view-style="scrollbarStyle">
-        <!-- <div v-for="i in 1000" :key="i">1</div> -->
-        <el-menu text-color="#707070">
-            <el-menu-item v-for="i in 100" :key="i">
-                <el-icon>aa</el-icon>
-                <span>Navigator Three</span>
-            </el-menu-item>
-        </el-menu>
-    </el-scrollbar>
+    <!-- <div v-for="i in 1000" :key="i">1</div> -->
+    <el-menu text-color="#707070" class="sidebar">
+        <el-menu-item v-for="i in 100" :key="i">
+            <el-icon>aa</el-icon>
+            <span>Navigator Three</span>
+        </el-menu-item>
+    </el-menu>
 </template>
 
-<script setup lang="ts">
-const scrollbarStyle = { maxHeight: '100%' }
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss" scoped>
 :deep(.el-menu-item) {
