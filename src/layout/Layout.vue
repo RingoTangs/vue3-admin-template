@@ -1,22 +1,16 @@
 <template>
-    <div class="flex w-full h-full layout">
-        <div class="h-full bg-pink-300 sidebar_wrapper">
-            <Sidebar />
-        </div>
-        <div class="h-full bg-red-200 main_wrapper"></div>
-    </div>
+    <el-container class="h-full layout">
+        <el-aside :width="asideWith" class="transition-all duration-300 bg-red-50">
+            Sidebar
+        </el-aside>
+        <el-main class="bg-slate-500">main</el-main>
+    </el-container>
 </template>
 
 <script setup lang="ts">
-import Sidebar from './sidebar/Sidebar.vue'
+import { ref } from 'vue'
+
+const asideWith = ref('300px')
 </script>
 
-<style lang="scss" scoped>
-$sidebar_width: 300px;
-.sidebar_wrapper {
-    width: $sidebar_width;
-}
-.main_wrapper {
-    width: calc(100% - #{$sidebar_width});
-}
-</style>
+<style lang="scss" scoped></style>
