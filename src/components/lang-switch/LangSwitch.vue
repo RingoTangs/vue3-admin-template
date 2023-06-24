@@ -13,7 +13,7 @@
         />
 
         <!-- 语言选择列表 -->
-        <Transition name="fade" appear>
+        <Transition name="fade" appear mode="out-in">
             <div
                 v-show="selectListShow"
                 class="absolute p-5 mt-1 text-sm rounded-md select-list bg-gray-50 right-2"

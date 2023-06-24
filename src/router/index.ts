@@ -20,11 +20,7 @@ const constantRoutes: Readonly<RouteRecordRaw[]> = [
             {
                 path: 'dashboard',
                 component: () => import('@/views/dashboard/Dashboard.vue'),
-            },
-            {
-                path: 'test',
-                component: () => import('@/views/test.vue'),
-            },
+            }
         ],
     },
 ]
