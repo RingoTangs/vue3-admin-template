@@ -5,7 +5,7 @@
                 <Sidebar></Sidebar>
             </el-scrollbar>
         </el-aside>
-        <el-main class="bg-slate-500">
+        <el-main>
             <AppMain></AppMain>
         </el-main>
     </el-container>
