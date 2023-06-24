@@ -3,6 +3,7 @@ import {} from 'vue'
 
 declare module 'vue-router' {
     interface RouteMeta {
-        title: ComputedRef<string>
+        title?: ComputedRef<string>
+        hidden?: boolean
     }
 }
