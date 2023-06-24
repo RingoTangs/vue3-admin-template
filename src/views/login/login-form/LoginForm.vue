@@ -7,7 +7,11 @@
 
         <!-- password -->
         <el-form-item prop="password">
-            <LoginFormPassword v-model:password="loginForm.password" :disabled="loading" />
+            <LoginFormPassword
+                v-model:password="loginForm.password"
+                :disabled="loading"
+                @keyup.enter="onLoginBtnClick"
+            />
         </el-form-item>
 
         <!-- Login -->
