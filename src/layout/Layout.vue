@@ -1,7 +1,7 @@
 <template>
     <el-container class="h-full layout">
         <el-aside :width="asideWith" class="sidebar_wrapper">
-            <el-scrollbar>
+            <el-scrollbar :wrap-style="{ maxHeight: '100%' }" :view-style="{ maxHeight: '100%' }">
                 <Sidebar></Sidebar>
             </el-scrollbar>
         </el-aside>
@@ -21,7 +21,7 @@ const asideWith = ref('300px')
 
 <style lang="scss" scoped>
 .sidebar_wrapper {
-    @apply transition-all duration-300;
+    @apply transition-all duration-300 bg-[#f1f5f9];
 }
 :deep(.el-main) {
     @apply p-0;
