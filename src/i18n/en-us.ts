@@ -14,4 +14,7 @@ export default {
             },
         },
     },
+    dashboardPage: {
+        title: 'Dashboard'
+    }
 }

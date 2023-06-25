@@ -8,6 +8,7 @@ const constantRoutes: Readonly<RouteRecordRaw[]> = [
         path: '/login',
         component: () => import('@/views/login/Login.vue'),
         meta: {
+            root: true,
             hidden: true,
             title: computed(() => i18n.global.t('loginPage.title')),
         },
@@ -16,11 +17,30 @@ const constantRoutes: Readonly<RouteRecordRaw[]> = [
         path: '/',
         component: () => import('@/layout/Layout.vue'),
         redirect: '/dashboard',
+        meta: { root: true },
         children: [
             {
                 path: 'dashboard',
                 component: () => import('@/views/dashboard/Dashboard.vue'),
-            }
+                meta: {
+                    title: computed(() => i18n.global.t('dashboardPage.title')),
+                },
+            },
+        ],
+    },
+    {
+        path: '/example',
+        component: () => import('@/layout/Layout.vue'),
+        redirect: '/example/table',
+        meta: { root: true },
+        children: [
+            {
+                path: 'table',
+                component: () => import('@/views/dashboard/Dashboard.vue'),
+                meta: {
+                    title: computed(() => i18n.global.t('dashboardPage.title')),
+                },
+            },
         ],
     },
 ]

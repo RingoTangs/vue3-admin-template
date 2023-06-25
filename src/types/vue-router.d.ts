@@ -5,5 +5,6 @@ declare module 'vue-router' {
     interface RouteMeta {
         title?: ComputedRef<string>
         hidden?: boolean
+        root?: boolean
     }
 }
