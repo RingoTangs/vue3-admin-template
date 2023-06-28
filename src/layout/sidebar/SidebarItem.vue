@@ -15,18 +15,13 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
+import { useRoute } from 'vue-router'
+import { pathShow } from './index'
 
 const props = defineProps<{ to: string }>()
 
-const routes = useRouter().getRoutes()
 const route = useRoute()
-
-const show = computed(() => {
-    const targetRoute = routes.find((d) => d.path === props.to)
-    if (!targetRoute) return false
-    return !targetRoute.meta.hidden
-})
+const show = computed(() => pathShow(props.to))
 </script>
 
 <style lang="scss" scoped>
