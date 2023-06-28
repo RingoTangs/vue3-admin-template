@@ -1,6 +1,6 @@
 <template>
-    <div class="pt-2 sidebar_item">
-        <router-link :to="to" v-if="show">
+    <div class="pt-2 sidebar_item" v-if="show">
+        <router-link :to="to">
             <el-menu-item :class="{ active: route.path === to }">
                 <span class="mr-3 prefix">
                     <slot name="prefix"></slot>

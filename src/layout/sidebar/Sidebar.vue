@@ -1,33 +1,15 @@
 <template>
-    <el-menu class="sidebar">
+    <el-menu class="sidebar" :default-openeds="['example']">
         <!-- 首页/dashboard -->
-        <SidebarItem to="/dashboard">
-            <template #prefix>
-                <SvgIcon name="dashboard" class="w-8 h-8"></SvgIcon>
-            </template>
-            {{ t('dashboardPage.title') }}
-        </SidebarItem>
+        <Dashboard />
 
-        <SidebarGroup index="3">
-            <template #prefix>Icon</template>
-            <template #title>Example</template>
-            <SidebarItem to="/example/table">
-                <template #prefix>
-                    <SvgIcon name="dashboard" class="w-8 h-8"></SvgIcon>
-                </template>
-                table
-            </SidebarItem>
-        </SidebarGroup>
+        <Example />
     </el-menu>
 </template>
 
 <script setup lang="ts">
-import SidebarItem from './SidebarItem.vue'
-import SidebarGroup from './SidebarGroup.vue'
-import { useI18n } from 'vue-i18n'
-import SvgIcon from '@/components/svg-icon/SvgIcon.vue'
-
-const { t } = useI18n()
+import Dashboard from './items/Dashboard.vue'
+import Example from './items/Example.vue'
 </script>
 
 <style lang="scss" scoped>
