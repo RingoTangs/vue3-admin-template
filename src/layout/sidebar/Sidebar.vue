@@ -1,5 +1,5 @@
 <template>
-    <el-menu class="sidebar" :default-openeds="['example']">
+    <el-menu class="sidebar">
         <!-- 首页/dashboard -->
         <Dashboard />
 
