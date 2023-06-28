@@ -1,14 +1,16 @@
 <template>
-    <router-link :to="to" v-if="show" class="block mx-4 my-3">
-        <el-menu-item :class="{ active: route.path === to }">
-            <span class="mr-3 prefix">
-                <slot name="prefix"></slot>
-            </span>
-            <span>
-                <slot></slot>
-            </span>
-        </el-menu-item>
-    </router-link>
+    <div class="pt-2 sidebar_item">
+        <router-link :to="to" v-if="show">
+            <el-menu-item :class="{ active: route.path === to }">
+                <span class="mr-3 prefix">
+                    <slot name="prefix"></slot>
+                </span>
+                <span>
+                    <slot></slot>
+                </span>
+            </el-menu-item>
+        </router-link>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -30,7 +32,7 @@ const show = computed(() => {
 <style lang="scss" scoped>
 :deep(.el-menu-item) {
     @apply text-lg font-semibold hover:bg-[#695cfe] hover:text-white;
-    @apply transition-all rounded-lg duration-700;
+    @apply transition-all rounded-lg duration-300;
 }
 
 .active {

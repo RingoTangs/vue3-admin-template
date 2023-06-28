@@ -33,7 +33,7 @@ const constantRoutes: Readonly<RouteRecordRaw[]> = [
         children: [
             {
                 path: 'table',
-                component: () => import('@/views/dashboard/Dashboard.vue'),
+                component: () => import('@/views/table/Table.vue'),
                 meta: {
                     title: computed(() => i18n.global.t('dashboardPage.title')),
                 },
