@@ -6,3 +6,19 @@ export function pathShow(path: string) {
     if (!targetRoute) return false
     return !targetRoute.meta.hidden
 }
+
+export type Link = {
+    type: 'link'
+    to: string
+    name: string
+    icon: string
+}
+
+export type Group = {
+    type: 'group'
+    icon: string
+    name: string
+    children: (Link | Group)[]
+}
+
+export type Item = Link | Group

@@ -3,10 +3,10 @@
         <el-sub-menu v-bind="$attrs">
             <template #title>
                 <span class="mr-3">
-                    <slot name="prefix"></slot>
+                    <SvgIcon :name="icon" class="w-6 h-6" />
                 </span>
                 <span>
-                    <slot name="title"></slot>
+                    {{ name }}
                 </span>
             </template>
             <slot></slot>
@@ -14,7 +14,10 @@
     </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import SvgIcon from '@/components/svg-icon/SvgIcon.vue'
+defineProps<{ icon: string; name: string }>()
+</script>
 
 <style lang="scss" scoped>
 :deep(.el-sub-menu) {

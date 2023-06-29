@@ -1,25 +1,21 @@
 <template>
-    <SidebarItem v-if="item.type === 'item'" :to="item.to">
-        <template #prefix>{{ item.icon }}</template>
-        {{ item.name }}
-    </SidebarItem>
-    <SidebarGroup v-if="item.type === 'group'" :index="item.name">
-        <template #prefix?>{{ item.icon }}</template>
-        <template #title>{{ item.name }}</template>
-        <SidebarMenu v-for="(d, i) in item.children" :key="i" :item="d" />
-    </SidebarGroup>
+    <!-- Link -->
+    <template v-if="item.type === 'link'">
+        <SidebarItem :to="item.to" :icon="item.icon" :name="item.name" :index="item.to" />
+    </template>
+
+    <!-- Group -->
+    <template v-if="item.type === 'group'">
+        <SidebarGroup :index="item.name" :icon="item.icon" :name="item.name">
+            <SidebarMenu v-for="(d, i) in item.children" :item="d" :key="i" />
+        </SidebarGroup>
+    </template>
 </template>
 
 <script setup lang="ts">
 import SidebarItem from './SidebarItem.vue'
 import SidebarGroup from './SidebarGroup.vue'
-type Item = {
-    type: 'item' | 'group'
-    name: string
-    icon: string
-    to: string
-    children: Item[]
-}
+import { Item } from './index'
 defineProps<{ item: Item }>()
 </script>
 

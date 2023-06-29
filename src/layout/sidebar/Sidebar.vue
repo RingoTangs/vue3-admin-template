@@ -1,15 +1,34 @@
 <template>
     <el-menu class="sidebar">
-        <!-- 首页/dashboard -->
-        <Dashboard />
-
-        <Example />
+        <SidebarMenu v-for="(d, i) in items" :item="d" :key="i"></SidebarMenu>
     </el-menu>
 </template>
 
 <script setup lang="ts">
-import Dashboard from './items/Dashboard.vue'
-import Example from './items/Example.vue'
+import SidebarMenu from './SidebarMenu.vue'
+import { Item } from './index'
+
+const items: Item[] = [
+    {
+        type: 'link',
+        name: 'Dashboard',
+        icon: 'dashboard',
+        to: '/dashboard',
+    },
+    {
+        type: 'group',
+        name: 'Example',
+        icon: 'example',
+        children: [
+            {
+                type: 'link',
+                name: 'table',
+                icon: 'table',
+                to: '/example/table',
+            },
+        ],
+    },
+]
 </script>
 
 <style lang="scss" scoped>
