@@ -1,12 +1,33 @@
 <template>
-    <el-menu class="sidebar">
-        <SidebarMenu v-for="(d, i) in items" :item="d" :key="i"></SidebarMenu>
+    {{ sidebarStore.menuIndexPathMap }}
+    <el-menu class="sidebar" ref="ELMenu" @select="onSelect" :default-openeds="defaultOpens" :router="false">
+        <SidebarMenu v-for="(d, i) in items" :item="d" :key="i" />
     </el-menu>
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import SidebarMenu from './SidebarMenu.vue'
 import { Item } from './index'
+import { useSidebarStore } from '@/store'
+import { useRoute } from 'vue-router'
+
+const sidebarStore = useSidebarStore()
+
+const onSelect = (index: string, indexPath: string[]) => {
+    sidebarStore.putMenuSelectedPath(index, indexPath)
+}
+
+const defaultOpens = computed(() => {
+    const route = useRoute()
+    const path = route.path
+    const indexPath = sidebarStore.menuIndexPathMap[path]
+    if (indexPath && indexPath.length) {
+        const i = indexPath.findIndex((d) => d === path)
+        return indexPath.slice(0, i)
+    }
+    return []
+})
 
 const items: Item[] = [
     {

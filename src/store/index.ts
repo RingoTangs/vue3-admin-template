@@ -4,3 +4,4 @@ export default createPinia()
 
 export * from './token'
 export * from './user'
+export * from './sidebar'
