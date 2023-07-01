@@ -1,5 +1,5 @@
 import { computed } from 'vue'
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import i18n from '@/i18n'
 
@@ -44,5 +44,5 @@ const constantRoutes: Readonly<RouteRecordRaw[]> = [
 
 export default createRouter({
     routes: constantRoutes,
-    history: createWebHashHistory(),
+    history: createWebHistory(),
 })
