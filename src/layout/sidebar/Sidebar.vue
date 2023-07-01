@@ -1,5 +1,4 @@
 <template>
-    {{ sidebarStore.menuIndexPathMap }}
     <el-menu class="sidebar" ref="ELMenu" @select="onSelect" :default-openeds="defaultOpens" :router="false">
         <SidebarMenu v-for="(d, i) in items" :item="d" :key="i" />
     </el-menu>
