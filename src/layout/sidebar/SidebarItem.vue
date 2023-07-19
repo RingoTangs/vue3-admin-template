@@ -1,5 +1,5 @@
 <template>
-    <div class="pt-2 sidebar_item" v-if="show">
+    <div class="pt-2 sidebar_item caret-transparent" v-if="show">
         <el-menu-item
             :class="{ active: $route.path === to }"
             @click="onElMenuItemClick"
