@@ -1,5 +1,5 @@
 <template>
-    <div class="relative lang-switch" @mouseenter="display" @mouseleave="hidden">
+    <div class="relative lang-switch" @mouseenter="display" @mouseleave="delayHidden()">
         <!-- 图标 -->
         <SvgIcon
             @click="() => (selectListShow = true)"
@@ -36,8 +36,13 @@ const onSwitch = (locale: Language) => {
     selectListShow.value = false
 }
 
-const display = () => (selectListShow.value = true)
-const hidden = () => (selectListShow.value = false)
+// display hidden
+let id = 0
+const display = () => {
+    if (id) clearTimeout(id)
+    selectListShow.value = true
+}
+const delayHidden = (ts = 200) => (id = setTimeout(() => (selectListShow.value = false), ts))
 </script>
 
 <style scoped lang="scss">
