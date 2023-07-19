@@ -10,7 +10,7 @@
             <div class="mr-6">
                 <LangSwitch />
             </div>
-            <div>
+            <div class="navbaravatar_wrapper">
                 <NavbarAvatar />
             </div>
         </div>
@@ -25,6 +25,6 @@ import NavbarAvatar from './NavbarAvatar.vue'
 
 <style lang="scss" scoped>
 .navbar {
-    @apply flex  px-6 shadow-sm  items-center justify-center;
+    @apply flex  px-10 shadow-sm  items-center justify-center;
 }
 </style>

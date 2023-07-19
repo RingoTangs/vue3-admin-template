@@ -15,12 +15,16 @@ export default {
         },
     },
     dashboardPage: {
-        title: 'Dashboard'
+        title: 'Dashboard',
     },
     examplePage: {
-        title: 'Example'
+        title: 'Example',
     },
     tablePage: {
-        title: 'Table'
-    }
+        title: 'Table',
+    },
+    avatarDropdown: {
+        userinfo: '用户信息',
+        logout: '退出登录',
+    },
 }

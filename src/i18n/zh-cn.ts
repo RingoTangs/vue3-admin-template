@@ -23,4 +23,8 @@ export default {
     tablePage: {
         title: '表格',
     },
+    avatarDropdown: {
+        userinfo: 'UserInfo',
+        logout: 'Logout',
+    },
 }
