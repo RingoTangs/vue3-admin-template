@@ -2,22 +2,25 @@
     <div class="navbar">
         <!-- Left -->
         <div>
-            <Breadcrumb />
+            <NavbarBreadcrumb />
         </div>
 
         <!-- Right -->
-        <div class="flex ml-auto">
-            <div class="mr-5">
-                <LangSwitch></LangSwitch>
+        <div class="flex items-center ml-auto caret-transparent">
+            <div class="mr-6">
+                <LangSwitch />
             </div>
-            <div>User Info 123</div>
+            <div>
+                <NavbarAvatar />
+            </div>
         </div>
     </div>
 </template>
 
 <script lang="ts" setup>
-import Breadcrumb from './Breadcrumb.vue'
+import NavbarBreadcrumb from './NavbarBreadcrumb.vue'
 import LangSwitch from '@/components/lang-switch/LangSwitch.vue'
+import NavbarAvatar from './NavbarAvatar.vue'
 </script>
 
 <style lang="scss" scoped>
