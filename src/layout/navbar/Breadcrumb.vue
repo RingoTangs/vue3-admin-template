@@ -30,7 +30,7 @@ watch(
 
 <style lang="scss" scoped>
 .breadcrumb.el-breadcrumb {
-    @apply text-base caret-transparent;
+    @apply text-lg caret-transparent;
     :deep(.el-breadcrumb__item) {
         &:last-child {
             .el-breadcrumb__inner {

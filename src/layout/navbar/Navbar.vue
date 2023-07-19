@@ -6,7 +6,7 @@
         </div>
 
         <!-- Right -->
-        <div class="flex ml-auto bg-purple-300">
+        <div class="flex ml-auto">
             <div class="mr-5">
                 <LangSwitch></LangSwitch>
             </div>
