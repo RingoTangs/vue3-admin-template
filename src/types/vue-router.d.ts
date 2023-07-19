@@ -1,5 +1,5 @@
 import 'vue-router'
-import {} from 'vue'
+import { ComputedRef } from 'vue'
 
 declare module 'vue-router' {
     interface RouteMeta {
