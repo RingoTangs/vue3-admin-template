@@ -39,3 +39,19 @@ body,
     opacity: 0;
     transform: translateX(100px);
 }
+
+// LangSwitch Select List Transition
+.langswitch_selectlist_fade-enter-active,
+.langswitch_selectlist_fade-leave-active {
+    @apply transition-all duration-300;
+}
+
+.langswitch_selectlist_fade-enter-to,
+.langswitch_selectlist_fade-leave-from {
+    @apply opacity-100 mt-1;
+}
+
+.langswitch_selectlist_fade-leave-to,
+.langswitch_selectlist_fade-enter-from {
+    @apply opacity-0 mt-5;
+}

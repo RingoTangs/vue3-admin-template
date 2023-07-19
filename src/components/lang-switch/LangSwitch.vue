@@ -1,9 +1,5 @@
 <template>
-    <div
-        class="relative lang-switch"
-        @mouseenter="() => (selectListShow = true)"
-        @mouseleave="() => (selectListShow = false)"
-    >
+    <div class="relative lang-switch" @mouseenter="display" @mouseleave="hidden">
         <!-- 图标 -->
         <SvgIcon
             @click="() => (selectListShow = true)"
@@ -13,10 +9,10 @@
         />
 
         <!-- 语言选择列表 -->
-        <Transition name="fade" appear mode="out-in">
+        <Transition name="langswitch_selectlist_fade" appear mode="out-in">
             <div
                 v-show="selectListShow"
-                class="absolute p-5 mt-1 text-sm rounded-md select-list bg-gray-50 right-2"
+                class="absolute z-[999] p-5 mt-1 text-sm rounded-md select-list bg-gray-50 right-2"
                 ref="selectList"
             >
                 <div class="mb-3 min-w-max" @click="onSwitch('zh')">简体中文</div>
@@ -39,24 +35,12 @@ const onSwitch = (locale: Language) => {
     switchLocale(locale)
     selectListShow.value = false
 }
+
+const display = () => (selectListShow.value = true)
+const hidden = () => (selectListShow.value = false)
 </script>
 
 <style scoped lang="scss">
-.fade-enter-active,
-.fade-leave-active {
-    @apply transition-all duration-300;
-}
-
-.fade-enter-to,
-.fade-leave-from {
-    @apply opacity-100 mt-1;
-}
-
-.fade-leave-to,
-.fade-enter-from {
-    @apply opacity-0 mt-5;
-}
-
 .select-list {
     div {
         @apply transition-all hover:text-green-600 hover:cursor-pointer caret-transparent;

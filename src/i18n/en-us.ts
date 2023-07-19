@@ -16,5 +16,11 @@ export default {
     },
     dashboardPage: {
         title: 'Dashboard'
+    },
+    examplePage: {
+        title: 'Example'
+    },
+    tablePage: {
+        title: 'Table'
     }
 }

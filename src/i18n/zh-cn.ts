@@ -17,4 +17,10 @@ export default {
     dashboardPage: {
         title: '首页',
     },
+    examplePage: {
+        title: '案例',
+    },
+    tablePage: {
+        title: '表格',
+    },
 }

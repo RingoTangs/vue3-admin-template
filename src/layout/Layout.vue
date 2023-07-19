@@ -5,8 +5,14 @@
                 <Sidebar></Sidebar>
             </el-scrollbar>
         </el-aside>
-        <el-main>
-            <AppMain></AppMain>
+        <el-main class="main">
+            <Navbar :style="{ height: `${navbarHeight}` }"></Navbar>
+            <el-scrollbar
+                class="appmain_scrollbar"
+                :style="{ height: `calc(100% - ${navbarHeight})` }"
+            >
+                <AppMain />
+            </el-scrollbar>
         </el-main>
     </el-container>
 </template>
@@ -15,8 +21,10 @@
 import { ref } from 'vue'
 import Sidebar from './sidebar/Sidebar.vue'
 import AppMain from './AppMain.vue'
+import Navbar from './navbar/Navbar.vue'
 
 const asideWith = ref('300px')
+const navbarHeight = ref('50px')
 </script>
 
 <style lang="scss" scoped>

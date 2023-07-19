@@ -29,13 +29,16 @@ const constantRoutes: Readonly<RouteRecordRaw[]> = [
     {
         path: '/example',
         component: () => import('@/layout/Layout.vue'),
+        meta: {
+            title: computed(() => i18n.global.t('examplePage.title')),
+        },
         redirect: '/example/table',
         children: [
             {
                 path: 'table',
                 component: () => import('@/views/table/Table.vue'),
                 meta: {
-                    title: computed(() => i18n.global.t('dashboardPage.title')),
+                    title: computed(() => i18n.global.t('tablePage.title')),
                 },
             },
         ],
