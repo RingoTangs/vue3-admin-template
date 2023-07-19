@@ -9,9 +9,10 @@
 <script setup lang="ts">
 import { watch, ref } from 'vue'
 import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const route = useRoute()
-console.log(route)
 
 const level = ref<{ path: string; title: string }[]>([])
 watch(
@@ -20,7 +21,7 @@ watch(
         const matched = route.matched.filter((d) => d.meta && d.meta.title)
         level.value = matched.map((d) => ({ path: d.path, title: d.meta.title }))
         if (level.value[0].path !== '/dashboard') {
-            level.value.unshift({ path: '/dashboard', title: 'Dashboard' })
+            level.value.unshift({ path: '/dashboard', title: t('dashboardPage.title') })
         }
     },
     { immediate: true }
@@ -29,8 +30,14 @@ watch(
 
 <style lang="scss" scoped>
 .breadcrumb.el-breadcrumb {
-    @apply text-base;
+    @apply text-base caret-transparent;
     :deep(.el-breadcrumb__item) {
+        &:last-child {
+            .el-breadcrumb__inner {
+                @apply font-bold;
+                color: var(--el-text-color-primary);
+            }
+        }
         &:not(:last-child) {
             .el-breadcrumb__inner.is-link {
                 @apply hover:text-[#695cfe];
