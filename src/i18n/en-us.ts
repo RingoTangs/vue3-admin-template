@@ -24,7 +24,7 @@ export default {
         title: 'Table',
     },
     avatarDropdown: {
-        userinfo: '用户信息',
-        logout: '退出登录',
+        userinfo: 'User Info',
+        logout: 'Logout',
     },
 }
