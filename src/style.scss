@@ -55,3 +55,15 @@ body,
 .langswitch_selectlist_fade-enter-from {
     @apply opacity-0 mt-5;
 }
+
+/************************************ Element Plus Style Reset ******************************************/
+
+// Dropdown Item
+.el-dropdown__popper.el-popper,
+.el-popper.is-light {
+    border: none !important;
+}
+%el_dropdown_item {
+    @apply font-bold caret-transparent;
+    @apply hover:bg-[#695cfe] hover:text-white text-base  transition-all duration-200;
+}

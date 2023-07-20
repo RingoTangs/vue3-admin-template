@@ -20,14 +20,15 @@
 import { ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-const navbarAvatar = ref()
+const navbarAvatar = ref<HTMLDivElement>()
 const { t } = useI18n()
 
 // 移除黑边
-onMounted(() => navbarAvatar.value.removeAttribute('tabindex'))
+onMounted(() => navbarAvatar.value?.removeAttribute('tabindex'))
 </script>
 
 <style lang="scss" scoped>
+@import '@/style.scss';
 .avatar_wrapper {
     @apply pr-5 flex relative;
     &::before {
@@ -36,8 +37,8 @@ onMounted(() => navbarAvatar.value.removeAttribute('tabindex'))
         @apply border-t-black;
     }
 }
+
 :deep(.el_dropdown_item) {
-    @apply font-bold caret-transparent;
-    @apply hover:bg-[#695cfe] hover:text-white text-base  transition-all duration-200;
+    @extend %el_dropdown_item;
 }
 </style>

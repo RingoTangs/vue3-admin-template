@@ -1,54 +1,37 @@
 <template>
-    <div class="relative lang-switch" @mouseenter="display" @mouseleave="delayHidden()">
-        <!-- 图标 -->
-        <SvgIcon
-            @click="() => (selectListShow = true)"
-            name="language"
-            class="w-8 h-8 text-sm svg_icon"
-            :style="{ color: iconColor }"
-        />
+    <el-dropdown size="large" @command="(lang:Language) => switchLocale(lang)">
+        <div ref="svgIconWrapper">
+            <SvgIcon name="language" class="w-8 h-8" :style="{ color: iconColor }" />
+        </div>
+        <template #dropdown>
+            <el-dropdown-menu>
+                <el-dropdown-item class="el_dropdown_item" command="zh">
+                    简体中文
+                </el-dropdown-item>
 
-        <!-- 语言选择列表 -->
-        <Transition name="langswitch_selectlist_fade" appear mode="out-in">
-            <div
-                v-show="selectListShow"
-                class="absolute z-[999] p-5 mt-1 text-sm rounded-md select-list bg-gray-50 right-2"
-                ref="selectList"
-            >
-                <div class="mb-3 min-w-max" @click="onSwitch('zh')">简体中文</div>
-                <div class="min-w-max" @click="onSwitch('en')">English</div>
-            </div>
-        </Transition>
-    </div>
+                <!-- prettier-ignore -->
+                <el-dropdown-item class="el_dropdown_item" command="en">
+                    English 
+                </el-dropdown-item>
+            </el-dropdown-menu>
+        </template>
+    </el-dropdown>
 </template>
 
 <script setup lang="ts">
 import SvgIcon from '@/components/svg-icon/SvgIcon.vue'
-import { ref } from 'vue'
 import { switchLocale, Language } from '@/i18n'
+import { onMounted, ref } from 'vue'
 
-const selectListShow = ref(false)
+const svgIconWrapper = ref<HTMLDivElement | null>(null)
 
 withDefaults(defineProps<{ iconColor?: string }>(), { iconColor: '#000' })
-
-const onSwitch = (locale: Language) => {
-    switchLocale(locale)
-    selectListShow.value = false
-}
-
-// display hidden
-let id = 0
-const display = () => {
-    if (id) clearTimeout(id)
-    selectListShow.value = true
-}
-const delayHidden = (ts = 200) => (id = setTimeout(() => (selectListShow.value = false), ts))
+onMounted(() => svgIconWrapper.value?.removeAttribute('tabindex'))
 </script>
 
 <style scoped lang="scss">
-.select-list {
-    div {
-        @apply transition-all hover:text-green-600 hover:cursor-pointer caret-transparent;
-    }
+@import '@/style.scss';
+:deep(.el_dropdown_item) {
+    @extend %el_dropdown_item;
 }
 </style>
