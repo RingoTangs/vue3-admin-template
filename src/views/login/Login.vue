@@ -4,7 +4,7 @@
             class="form_wrapper w-[350px] px-3 py-8 rounded-xl sm:w-[520px] sm:px-11 sm:py-16 sm:mx-5"
         >
             <!-- 表单标题 -->
-            <h1 class="text-3xl font-bold text-center text-[#3e3e3e] mb-10">
+            <h1 class="text-3xl font-bold text-center text-[#3e3e3e] mb-10 caret-transparent">
                 {{ t('loginPage.formTitle') }}
             </h1>
 
