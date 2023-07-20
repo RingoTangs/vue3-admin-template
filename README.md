@@ -3,6 +3,9 @@
 ```
 npm install
 npm run dev
+
+# run mock server
+node ./mock/index.cjs
 ```
 
 # Image Display
